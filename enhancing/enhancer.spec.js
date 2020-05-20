@@ -30,7 +30,32 @@ describe('enhancer', () =>{
         })
     })
     describe('fail()', ()=>{
-
+        test('if it will decrease the enhancement by 1 and durability by 10 if enhancement is 16 or more', () =>{
+            const initial = {
+                name:'sword',
+                durability:80,
+                enhancement:17
+            };
+            const shouldBE = {
+                name:'sword',
+                durability:70,
+                enhancement:16
+            };
+            expect(enhancer.fail(initial)).toStrictEqual(shouldBE)
+        })
+        test('if it will only decrease durability by 10 if enhancement is 15', () =>{
+            const initial = {
+                name:'sword',
+                durability:50,
+                enhancement:15
+            };
+            const shouldBE = {
+                name:'sword',
+                durability:40,
+                enhancement:15
+            };
+            expect(enhancer.fail(initial)).toStrictEqual(shouldBE)
+        })
     })
     describe('get()', ()=>{
 
@@ -49,6 +74,19 @@ describe('enhancer', () =>{
             }
             expect(enhancer.repair(initial)).toStrictEqual(shouldBE);
 
+        })
+        test('if it will return the item untouched if it is already at max durability', () =>{
+            const initial = {
+                name:'sword',
+                durability:100,
+                enhancement:20
+            };
+            const shouldBE = {
+                name:'sword',
+                durability:100,
+                enhancement:20
+            };
+            expect(enhancer.repair(initial)).toStrictEqual(shouldBE)
         })
     })
 })

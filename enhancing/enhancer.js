@@ -9,6 +9,10 @@ function succeed(item) {
   if(!item.durability || !item.name || !item.enhancement){
     return {...item, message:'This item does not have the credentials to work'};
   }
+  else if(item.enhancement < 0){
+    item.enhancement = 0;
+    return{...item};
+  }
   else if(item.enhancement === 20){
     return {...item};
   }
@@ -22,8 +26,30 @@ function fail(item) {
   if(!item.durability || !item.name || !item.enhancement){
     return {...item, message:'This item does not have the credentials to work'};
   }
-  
+  else if(item.enhancement < 0){
+    item.enhancement = 0;
+    item.durability = item.durability-5;
+    return{...item};
+  }
+  else if(item.enhancement >= 16){
+    item.enhancement--;
+    if(item.durability === 0){
+      return {...item};
+    }else{
+      item.durability = item.durability-10;
+      return{...item};
+    }
+  }
+  else if(item.enhancement >=15){
+    if(item.durability === 0){
+      return {...item};
+    }else{
+      item.durability = item.durability-10;
+      return{...item};
+    }
+  }
   else{
+    item.durability = item.durability-5;
     return {...item};
   }
 }
