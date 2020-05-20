@@ -56,9 +56,35 @@ describe('enhancer', () =>{
             };
             expect(enhancer.fail(initial)).toStrictEqual(shouldBE)
         })
+        test('if it will only decrease durability by 5 if enhancement is less than 15', () =>{
+            const initial = {
+                name:'sword',
+                durability:70,
+                enhancement:12
+            };
+            const shouldBE = {
+                name:'sword',
+                durability:65,
+                enhancement:12
+            };
+            expect(enhancer.fail(initial)).toStrictEqual(shouldBE)
+        })
     })
     describe('get()', ()=>{
+        test('if it will modify name with enhancement 1 or greater', () =>{
+            const initial = {
+                name:'sword',
+                durability:100,
+                enhancement:5
+            };
+            const shouldBE = {
+                name:'[+5]sword',
+                durability:100,
+                enhancement:5
+            }
+            expect(enhancer.get(initial)).toStrictEqual(shouldBE);
 
+        })
     })
     describe('repair()', ()=>{
         test('if it will restore durability to one hundred with item less than 100', () =>{

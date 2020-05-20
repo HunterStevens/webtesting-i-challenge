@@ -72,8 +72,11 @@ function get(item) {
   if(!item.durability || !item.name || !item.enhancement){
     return {...item, message:'This item does not have the credentials to work'};
   }
-  
-  else{
+  else if(item.enhancement <= 0){
     return {...item};
+  }
+  else{
+    item.name = `[+${item.enhancement}]${item.name}`;
+    return{...item};
   }
 }
