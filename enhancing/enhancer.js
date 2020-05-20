@@ -6,10 +6,7 @@ module.exports = {
 };
 
 function succeed(item) {
-  if(!item.durability || !item.name || !item.enhancement){
-    return {...item, message:'This item does not have the credentials to work'};
-  }
-  else if(item.enhancement < 0){
+  if(item.enhancement < 0){
     item.enhancement = 0;
     return{...item};
   }
@@ -23,10 +20,7 @@ function succeed(item) {
 }
 
 function fail(item) {
-  if(!item.durability || !item.name || !item.enhancement){
-    return {...item, message:'This item does not have the credentials to work'};
-  }
-  else if(item.enhancement < 0){
+if(item.enhancement < 0){
     item.enhancement = 0;
     item.durability = item.durability-5;
     return{...item};
@@ -55,10 +49,7 @@ function fail(item) {
 }
 
 function repair(item) {
-  if(!item.durability || !item.name || !item.enhancement){
-    return {...item, message:'This item does not have the credentials to work'};
-  }
-  else if(item.durability < 100){
+  if(item.durability < 100){
     item.durability = 100
     return { ...item };
   }
@@ -69,10 +60,7 @@ function repair(item) {
 }
 
 function get(item) {
-  if(!item.durability || !item.name || !item.enhancement){
-    return {...item, message:'This item does not have the credentials to work'};
-  }
-  else if(item.enhancement <= 0){
+  if(item.enhancement <= 0){
     return {...item};
   }
   else{

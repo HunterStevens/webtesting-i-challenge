@@ -85,6 +85,20 @@ describe('enhancer', () =>{
             expect(enhancer.get(initial)).toStrictEqual(shouldBE);
 
         })
+        test('if it will not modify name when enhancement is 0', () =>{
+            const initial = {
+                name:'sword',
+                durability:100,
+                enhancement:0
+            };
+            const shouldBE = {
+                name:'sword',
+                durability:100,
+                enhancement:0
+            }
+            expect(enhancer.get(initial)).toStrictEqual(shouldBE);
+
+        })
     })
     describe('repair()', ()=>{
         test('if it will restore durability to one hundred with item less than 100', () =>{
@@ -114,5 +128,6 @@ describe('enhancer', () =>{
             };
             expect(enhancer.repair(initial)).toStrictEqual(shouldBE)
         })
+        
     })
 })
